@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: darkgray;">User Registration</h1>
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name"></label>
+                <input type="text" placeholder="Name" id="name" name="name" required>
+                <span class="error-message" id="name-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="username"></label>
+                <input type="text" placeholder="User name" id="name" name="name" required>
+                <span class="error-message" id="username-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email"></label>
+                <input type="email" placeholder="Email ID" id="email" name="mobile" required>
+                <span class="error-message" id="email-error"></span>
+            </div>
+<div style="color: white;" class="gender-label"><b>Gender</b></div>            
+<div class="ccontainer">
+    <div class="pane">
+        <label class="label">
+            <span>Male</span>
+            <input id="left" class="input" name="radio" type="radio">
+        </label>
+        <label class="label">
+            <span>Female</span>
+            <input id="middle" class="input" checked="checked" name="radio" type="radio">
+        </label>
+        <label class="label">
+            <span>Others</span>
+            <input id="right" class="input" name="radio" type="radio" >
+        </label>
+        <span class="selection"></span>
+    </div>
+</div>
+            <div class="form-group">
+                <label for="mobile"></label>
+                <input type="number" placeholder="Mobile No." id="mobile" name="mobile" required>
+                <span class="error-message" id="mobile no.-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password"></label>
+                <input type="password" placeholder="Password" id="password" name="password" required>
+                <span class="error-message" id="password-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password"></label>
+                <input type="password"  placeholder="Confirm Password" id="confirm-password" name="confirm-password" required>
+                <span class="error-message" id="confirm-password-error"></span>
+            </div>
+            <div class="form-group">
+                <label style="color: darkgray;" for="security-question">Security Question:</label>
+                <select id="security-question" name="security-question" required>
+                
+                    <option value="" disabled selected>Select a security question</option>
+                    <option value="pet">What is the name of your first pet?</option>
+                    <option value="mother">What is your School name?</option>
+                    <option value="school">Who is your inspiration?</option>
+                </select>
+                <input style="margin: 5px;" placeholder="Your answer here" type="text" id="security-question" name="security-question">
+                <span class="error-message" id="security-question-error"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        <p id="success-message"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
