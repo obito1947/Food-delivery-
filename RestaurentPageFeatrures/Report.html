@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Report Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #495057;
+            margin-bottom: 40px;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #dc3545;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .statistics {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+            color: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            flex: 1 1 calc(25% - 20px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card h2 {
+            font-size: 36px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .stat-card p {
+            font-size: 18px;
+            margin: 10px 0 0;
+            font-weight: 600;
+        }
+
+        .order-history {
+            margin-top: 20px;
+        }
+
+        .order-history h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 28px;
+            border-left: 5px solid #dc3545;
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        table th {
+            background-color: #dc3545;
+            color: white;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table tr:hover {
+            background-color: #f8d7da;
+            transition: background-color 0.3s ease;
+        }
+
+        table td {
+            color: #495057;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        table td:nth-child(1) {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .no-orders {
+            text-align: center;
+            color: #777;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Restaurant Report Analysis</h1>
+
+        <div class="statistics">
+            <div class="stat-card">
+                <h2 id="totalOrders">0</h2>
+                <p>Total Orders This Month</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="monthIncome">$0</h2>
+                <p>Income This Month</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="totalIncome">$0</h2>
+                <p>Total Income</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="totalCustomers">0</h2>
+                <p>Total Customers</p>
+            </div>
+        </div>
+
+        <div class="order-history">
+            <h2>Previous Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Dish Name</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTableBody">
+                    <!-- Orders will be dynamically inserted here -->
+                </tbody>
+            </table>
+            <div id="noOrdersMessage" class="no-orders">No orders placed yet.</div>
+        </div>
+    </div>
+
+    <script>
+        // Example data, replace with actual data fetched from your backend
+        const reportData = {
+            totalOrders: 56,
+            monthIncome: 1345.67,
+            totalIncome: 8903.45,
+            totalCustomers: 120,
+            previousOrders: [
+                { id: 1, date: '2024-08-01', dishName: 'Pasta', quantity: 2, totalPrice: 19.99 },
+                { id: 2, date: '2024-08-03', dishName: 'Pizza', quantity: 1, totalPrice: 12.99 },
+                { id: 3, date: '2024-08-05', dishName: 'Salad', quantity: 3, totalPrice: 21.50 },
+                // Add more orders as needed
+            ]
+        };
+
+        document.getElementById('totalOrders').textContent = reportData.totalOrders;
+        document.getElementById('monthIncome').textContent = `$${reportData.monthIncome.toFixed(2)}`;
+        document.getElementById('totalIncome').textContent = `$${reportData.totalIncome.toFixed(2)}`;
+        document.getElementById('totalCustomers').textContent = reportData.totalCustomers;
+
+        const orderTableBody = document.getElementById('orderTableBody');
+        const noOrdersMessage = document.getElementById('noOrdersMessage');
+
+        if (reportData.previousOrders.length > 0) {
+            noOrdersMessage.style.display = 'none';
+
+            reportData.previousOrders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.date}</td>
+                    <td>${order.dishName}</td>
+                    <td>${order.quantity}</td>
+                    <td>$${order.totalPrice.toFixed(2)}</td>
+                `;
+                orderTableBody.appendChild(row);
+            });
+        } else {
+            noOrdersMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
