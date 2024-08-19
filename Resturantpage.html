@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food-Sphere</title>
     <link rel="stylesheet" href="Resturantpage.css">
-    <link rel="icon" href="https://icon-library.com/images/library-icon-png/library-icon-png-28.jpg" type="image/icon type">
+    <link rel="icon" href="https://github.com/obito1947/Food-delivery-/blob/main/WhatsApp_Image_2024-08-16_at_00.11.14_9ae1571f-removebg-preview.png?raw=true" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" >
 
@@ -17,21 +16,87 @@
 <body>
      <!-- Profile Logo -->
      <div id="profile-logo" class="profile-logo">
-        <img src="https://github.com/obito1947/Food-delivery-/blob/main/WhatsApp_Image_2024-08-16_at_00.11.14_9ae1571f-removebg-preview.png?raw=true" alt="Profile Logo">
+        <img src="https://th.bing.com/th/id/OIP.En-syxyO8aKO3SjmYAgMwQAAAA?rs=1&pid=ImgDetMain" 
+           alt="Profile Logo">
     </div>
 
-    <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-content">
-            <img src="https://github.com/obito1947/Food-delivery-/blob/main/WhatsApp_Image_2024-08-16_at_00.11.14_9ae1571f-removebg-preview.png?raw=true" alt="Profile Photo" class="sidebar-profile-photo">
-            <p class="sidebar-profile-name">John Doe</p>
-            <button class="sidebar-button"> View Profile</button>
-            <button class="sidebar-button"> Update profile</button>
-            <button class="sidebar-button"> Change Password</button>
-            <button class="sidebar-button"> Chnage Email</button><br><br><br>   
-            <button class="sidebar-button"> Logout</button>
+            <div class="profile-photo-wrapper">
+                <img src="https://th.bing.com/th/id/OIP.En-syxyO8aKO3SjmYAgMwQAAAA?rs=1&pid=ImgDetMain"
+                     alt="Profile Photo" class="sidebar-profile-photo" id="sidebarProfilePhoto">
+               
+            </div>
+            <p class="sidebar-profile-name">Gyomei Himejima</p>
+            <p>&bull;&ensp;working hours:10.00-10.00</p>
+            <p>&bull;&ensp;Number items available : 30</p>
+            <p>&bull;&ensp;Number items in the menu : 70</p>
+            <p>&bull;&ensp;Number of Orders Delivered : 150</p>
+            <p>&bull;&ensp;Number of orders Yet to be delivered: 50</p>
+            <p>&bull;&ensp;Rating of my Resturant:4.5</p>
+            <p class="edit-profile"><a href="#" id="editProfileBtn"><i class="fa-solid fa-user-edit"></i> &emsp;Edit Profile</a></p>
+            <hr>
+            <p class="logout"><a href="#"><i class="fa-solid fa-sign-out-alt"></i> &emsp;Logout</a></p> 
         </div>
     </div>
+    
+   <!-- Popup Window -->
+<div id="editProfilePopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm">
+            <div class="profile-photo-section">
+                <div class="profile-photo-wrapper">
+                    <img src="https://th.bing.com/th/id/OIP.En-syxyO8aKO3SjmYAgMwQAAAA?rs=1&pid=ImgDetMain"
+                         alt="Profile Photo" class="profile-photo" id="popupProfilePhoto">
+                    <span class="edit-icon"><i class="fa-solid fa-pencil-alt"></i></span>
+                </div>
+                <input type="file" id="profilePhotoInput" accept="image/*">
+            </div>
+
+            <fieldset>
+                <legend>Edit Profile Information</legend>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" value="Gyomei Himejima"><br>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="GyomeiH"><br>
+
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" value="gyomei@example.com"><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description">Your description here...</textarea><br>
+                
+                <label for="CurrentPassword">Current Password:</label>
+                <input type="password" id="CurrentPassword" name="CurrentPassword"><br>
+
+                <label for="securityQuestion">Security Question:</label>
+                <select id="securityQuestion" name="securityQuestion">
+                    <option value="favoriteColor">What is your favorite color?</option>
+                    <option value="petName">What is your pet’s name?</option>
+                    <option value="birthPlace">Where were you born?</option>
+                </select><br>
+
+                <label for="securityAnswer">Answer:</label>
+                <input type="text" id="securityAnswer" name="securityAnswer"><br>
+
+                <div id="passwordFields" style="display: none;">
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" id="newPassword" name="newPassword"><br>
+
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" "required"><br>
+                  <center> <button type="button" id="changePasswordBtn">Change Password</button><br> </center> 
+                </div>
+
+               <center><button type="submit">Save</button></center> 
+            </fieldset>
+        </form>
+    </div>
+</div>
+
     
 
     <div id="main-content" class="main-content">
@@ -50,28 +115,26 @@
             <li><a href="#" id="contactUsBtn" ><i class="fa-solid fa-envelope nav-icon"></i> Contact Us</a></li>
         </ul>
     </nav>
-    <div  class="starbucks-section">
-        <h2>StarBucks</h2>
+    <div  class="resturant-section">
+        <h2>Demon Slayer Corp</h2>
     </div>
     <div class="hero">
         <div class="hero-content">
             <h1>Welcome to Food-Sphere</h1><br>
-            <a href="#" class="cta-button">See More</a>
         </div>
     </div>
 
     
 <div class="section">
     <p></p><br>
-    <h2>New Items</h2>
     <div class="product-grid">
 
         <!-- Item 1 -->
         <div class="product-card">
-            <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=800"
+            <img src="https://raw.githubusercontent.com/obito1947/Food-delivery-/images/Food.webp"
                 alt="item 1" class="item" data-modal="item1Modal"> 
             <div class="info">
-                <h3 class="item" data-modal="item1Modal">item 1</h3>
+                <h3 class="item" data-modal="item1Modal">Add Dish</h3>
             </div>
         </div>
         <!-- Modal for Item 1 -->
@@ -85,10 +148,10 @@
 
         <!-- Item 2 -->
         <div class="product-card">
-            <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            <img src="https://raw.githubusercontent.com/obito1947/Food-delivery-/images/UpdateFood.webp"
                 alt="item 2" class="item" data-modal="item2Modal">
             <div class="info">
-                <h3 class="item" data-modal="item2Modal">item 2</h3>
+                <h3 class="item" data-modal="item2Modal">Update Dish</h3>
             </div>
         </div>
         <!-- Modal for Item 2 -->
@@ -102,10 +165,10 @@
 
         <!-- Item 3 -->
         <div class="product-card">
-            <img src="https://images.pexels.com/photos/3020129/pexels-photo-3020129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            <img src="https://raw.githubusercontent.com/obito1947/Food-delivery-/images/deletefood_landscape.webp"
                 alt="item 3" class="item" data-modal="item3Modal">
             <div class="info">
-                <h3 class="item" data-modal="item3Modal">item 3</h3>
+                <h3 class="item" data-modal="item3Modal"> Remove Dish</h3>
             </div>
         </div>
         <!-- Modal for Item 3 -->
@@ -119,27 +182,18 @@
 
         <!-- Item 4 -->
         <div class="product-card">
-            <img src="https://images.pexels.com/photos/4110337/pexels-photo-4110337.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
+            <img src="https://freedesignfile.com/upload/2015/02/Vector-set-of-restaurant-menu-design-graphics-01.jpg"
                 alt="item 4" class="item" data-modal="item4Modal">
             <div class="info">
-                <h3 class="item" data-modal="item4Modal">item 4</h3>
+                <h3 class="item" data-modal="item4Modal">Check Menu</h3>
             </div>
         </div>
-        <!-- Modal for Item 4 -->
-        <div id="item4Modal" class="modal">
-            <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <h2>This is item 4</h2>
-                <p>This is a description or details about Item 4.</p>
-            </div>
-        </div>
-
         <!-- Item 5 -->
         <div class="product-card">
-            <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=800"
+            <img src="https://th.bing.com/th/id/R.f8ba7461e513da166fd662507d5844c0?rik=FwqmFAsRapFSnw&riu=http%3a%2f%2fmoney.gigamundo.com%2fwp-content%2fuploads%2f2021%2f07%2fstock-market-today-1102201-scaled.jpg&ehk=kiJ%2fh3zUqdTAlySgYin%2bYxi%2fbTx7zh6NHEmV1rHd6%2f4%3d&risl=&pid=ImgRaw&r=0"
                 alt="item 5" class="item" data-modal="item5Modal">
             <div class="info">
-                <h3 class="item" data-modal="item5Modal">item 5</h3>
+                <h3 class="item" data-modal="item5Modal">View Analysis</h3>
             </div>
         </div>
         <!-- Modal for Item 5 -->
@@ -153,10 +207,10 @@
 
         <!-- Item 6 -->
         <div class="product-card">
-            <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            <img src="https://th.bing.com/th/id/R.20143cd2824099495437cac2b06014db?rik=6M7qb3nyOfMAbQ&riu=http%3a%2f%2ftrailheadtechnology.com%2fwp-content%2fuploads%2f2021%2f07%2ffeedback.jpg&ehk=RPyhXemdpVi8D1mTaYb2E5I%2bc2Utkt843%2b0QyRsb68o%3d&risl=&pid=ImgRaw&r=0"
                 alt="item 6" class="item" data-modal="item6Modal">
             <div class="info">
-                <h3 class="item" data-modal="item6Modal">item 6</h3>
+                <h3 class="item" data-modal="item6Modal">View Feedback</h3>
             </div>
         </div>
         <!-- Modal for Item 6 -->
@@ -169,7 +223,64 @@
         </div>
 
     </div>
-    <p></p><br>
+    <div id="extra-content" class="container3" style="display: none;">
+        <h1 class="container3-title">Menu</h1>
+        <div class="card">
+            <div class="card-image">
+                <img src="https://www.indianpolitics.co.in/wp-content/uploads/2021/02/dosa_c.jpg" alt="dosa">
+            </div>
+            <div class="card-text">
+                <p class="card-meal-type">
+                    south indian special
+                </p>
+                <h2 class="card-title">
+                    Dosa
+                </h2>
+                <p class="card-body">
+                    Experience the crisp, golden perfection of our dosas, served with an array of flavorful chutneys and sambar.
+                     Each dosa is expertly crafted to deliver a deliciously satisfying taste of traditional South Indian cuisine
+                </p>
+            </div>
+          
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img src="https://images2.alphacoders.com/108/1085778.jpg" alt="burger">
+            </div>
+            <div class="card-text">
+                <p class="card-meal-type">
+                    United States Special
+                </p>
+                <h2 class="card-title">
+                    Burger
+                </h2>
+                <p class="card-body">
+                    Indulge in our mouthwatering burgers, crafted with premium, juicy patties and fresh, flavorful toppings.
+                     Perfectly grilled and served on a soft, toasted bun, each bite promises a satisfying burst of deliciousness.
+                </p>
+            </div>
+            
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img src="https://th.bing.com/th/id/OIP.S4xZSae4ZW5rwZze55KzzQHaHa?rs=1&pid=ImgDetMain" alt="noodles">
+            </div>
+            <div class="card-text">
+                <p class="card-meal-type">
+                    Chinese Special
+                </p>
+                <h2 class="card-title">
+                    Noodles
+                </h2>
+                <p class="card-body">
+                    Savor our delectable noodles, perfectly cooked and tossed in savory sauces with a medley of fresh, crisp vegetables.
+                     Each bowl offers a delightful combination of flavors and textures that will keep you coming back for more
+            </div>
+           
+        </div>
+       
 </div>
 
     <section class="about-section" id="about-section">
@@ -195,7 +306,6 @@
 
     </script>
 
-    <p></p><br><br>
 </div>
 
         <div id="contact-section" class="contact-section">
@@ -293,8 +403,108 @@ window.onclick = function(event) {
 
 
         </script>
-        
+    <!--- Item 4 menu activation-->
+    <script>
+        document.querySelectorAll('.item').forEach(item => {
+            item.addEventListener('click', function() {
+                const modal = document.getElementById(this.getAttribute('data-modal'));
+                if (modal) {
+                    modal.style.display = "block";
+                }
+            });
+        });
     
+        document.querySelectorAll('.close-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.modal').style.display = "none";
+            });
+        });
+    
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        };
+    
+        document.querySelector('[data-modal="item4Modal"]').addEventListener('click', function() {
+            document.getElementById('extra-content').style.display = 'flex';
+        });
+    </script>
+    <!----code for pop-up edit profile---->
+    <script>
+    // Get elements
+    const editProfileBtn = document.getElementById("editProfileBtn");
+    const editProfilePopup = document.getElementById("editProfilePopup");
+    const closePopup = document.getElementById("closePopup");
+    const sidebarProfilePhoto = document.getElementById("sidebarProfilePhoto");
+    const popupProfilePhoto = document.getElementById("popupProfilePhoto");
+    const profilePhotoInput = document.getElementById("profilePhotoInput");
+    const editIcons = document.querySelectorAll('.edit-icon'); // Select all edit icons
+    
+    // Open popup on Edit Profile click
+    editProfileBtn.addEventListener("click", () => {
+        // Sync the popup profile photo with the current sidebar profile photo
+        popupProfilePhoto.src = sidebarProfilePhoto.src;
+        editProfilePopup.style.display = "block";
+    });
+    
+    // Close popup on close button click
+    closePopup.addEventListener("click", () => {
+        editProfilePopup.style.display = "none";
+    });
+    
+    // Close popup on outside click
+    window.addEventListener("click", (event) => {
+        if (event.target === editProfilePopup) {
+            editProfilePopup.style.display = "none";
+        }
+    });
+    
+    // Open file dialog on photo or edit icon click
+    function triggerFileInput() {
+        profilePhotoInput.click();
+    }
+    
+    popupProfilePhoto.addEventListener("click", triggerFileInput);
+    editIcons.forEach(icon => {
+        icon.addEventListener("click", triggerFileInput);
+    });
+    
+    // Change profile photo
+    profilePhotoInput.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                // Update both the popup and sidebar photos
+                popupProfilePhoto.src = e.target.result;
+                sidebarProfilePhoto.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+<!---- Script for password-->
+<script>
+    // Get elements
+const changePasswordBtn = document.getElementById("changePasswordBtn");
+const passwordFields = document.getElementById("passwordFields");
+
+// Show password fields after answering security question
+changePasswordBtn.addEventListener("click", () => {
+    const securityAnswer = document.getElementById("securityAnswer").value;
+    
+    // Simple validation to check if the security answer is filled
+    if (securityAnswer.trim() !== "") {
+        passwordFields.style.display = "block";
+        changePasswordBtn.style.display = "none";
+    } else {
+        alert("Please answer the security question before changing the password.");
+    }
+});
+
+</script>
+     
     </body>
 </html>
 

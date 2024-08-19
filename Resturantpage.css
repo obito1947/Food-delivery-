@@ -1,4 +1,4 @@
-.starbucks-section {
+.resturant-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
     z-index: 1002;
 }
 
-.starbucks-section h2 {
+.resturant-section h2 {
     font-size: 36px;
     color: #333;
     font-weight: bold;
@@ -53,12 +53,12 @@ header .logo {
     display: flex;
     align-items: center; /* Align items vertically */
     margin-bottom: 10px; /* Space between logo and navigation */
-    margin-left: 180px;
+    margin-left: 150px;
 }
 header .logo img {
     width: 100px;
     height: 100px;
-    margin-right: 150px; /* Space between logo and title */
+    margin-right: 180px; /* Space between logo and title */
     margin-left: 160px;
     margin-top: 15px;
     
@@ -187,13 +187,6 @@ nav li a:hover {
     margin: 30px 100px;
 }
 
-.section h2 {
-    font-size: 32px;
-    margin-top: 25px;
-    font-weight: 700;
-    color: #282c34;
-}
-
 .product-grid {
     display: flex;
     flex-wrap: wrap;
@@ -204,10 +197,10 @@ nav li a:hover {
 }
 
 .product-card {
-    background: #fff;
+    background: #454545;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     flex: 1 1 calc(33.33% - 40px); 
     /* 3 items per row with space between */
@@ -215,6 +208,7 @@ nav li a:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     cursor: pointer;
+    color: #fff;
 }
 
 .product-card:hover {
@@ -238,7 +232,6 @@ nav li a:hover {
     font-weight: 700;
     text-align: center;
 }
-
 
 
 /* About section */
@@ -276,7 +269,7 @@ nav li a:hover {
 /* contact section form */
 .contact-section {
     background: #fff;
-    padding: 40px 20px;
+    padding: 30px 10px;
     margin: 60px 60px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -402,8 +395,8 @@ footer a:hover {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -250px; /* Hidden by default */
-    width: 250px;
+    left: -20%; /* Hidden by default */
+    width: 20%;
     height: 100%;
     background-color: #282c34;
     color: white;
@@ -419,7 +412,6 @@ footer a:hover {
 .sidebar-profile-photo {
     width: 100px;
     height: 100px;
-    margin-left: 50px;
     border-radius: 50%;
     margin-bottom: 10px;
     filter: drop-shadow(5px 5px 10px #040404);
@@ -427,44 +419,175 @@ footer a:hover {
 
 .sidebar-profile-name {
     font-size: 18px;
+    margin-left: 26%;
     margin-bottom: 20px;
-    margin-left: 60px;
+    
 }
-
-/* Sidebar button styles */
-.sidebar-button {
-    width: 100%;
-    padding: 10px 20px;
-    margin: 50px 0;
-    background-color: #ff5722; /* Button background color */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.sidebar-content {
     display: flex;
-    align-items: center;
-    gap: 50px;
+    flex-direction: column;
+    align-items: left;
+    gap: 20px;
+   
+}
+.sidebar p {
+    cursor: pointer;
 }
 
-.sidebar-button i {
-    font-size: 20px;
+.sidebar a {
+    text-decoration: none;
+    color: #fdfbfb;
+    transition: color 0.3s ease;
 }
 
-.sidebar-button:hover {
-    background-color: #e64a19; /* Darker color on hover */
+.sidebar a:hover {
+    color: #ff5722;
+}
+.logout {
+    margin-top: 0%; /* Push the logout link to the bottom */
+    margin-left: 32%;
+    font-size: 18px;
+}
+.sidebar hr {
+    width: 100%;
 }
 
-.sidebar-content a:hover {
-    text-decoration: underline;
+.logout-divider {
+    border: none;
+    border-top: 1px solid #ccc; /* Custom border for the line */
+}
+
+.edit-profile {
+    margin-top: 80%; /* Push the logout link to the bottom */
+    margin-left: 150px;
+    font-size: 15px;
 }
 
 /* Remove the content shift when the sidebar is active */
 .main-content {
     transition: margin-left 0.3s ease; /* Smooth transition for potential future effects */
+}
+
+/* Popup Styles */
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1300;
+    left: 32%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow:scroll;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.close-btn {
+    color: #aaa;
+    align-self: flex-end;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.profile-photo-section {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.profile-photo-wrapper {
+    position: relative;
+    width: 120px;
+    margin: 0 auto;
+}
+
+.profile-photo, .sidebar-profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#editProfileForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+fieldset {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+#editProfileForm label {
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#editProfileForm input,
+#editProfileForm textarea,
+#editProfileForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#editProfileForm button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#editProfileForm button:hover {
+    background-color: #555;
 }
 
 /* Profile Logo */
@@ -480,9 +603,10 @@ footer a:hover {
 
 .profile-logo img {
     width: 100%;
-    height: auto;
-    
-    filter:drop-shadow(5px 5px 10px #d8d6d6);
+    height: 130%;
+    border: 1px solid black;
+    border-radius: 50%; /* Makes the image circular */
+    filter:drop-shadow(2px 2px 5px #8c8b8b);
 }
 
 /* Main Content */
@@ -557,4 +681,91 @@ footer a:hover {
         display: block;
         margin: 0.5rem 0;
     }
+}
+
+/* Card styles */
+.container3 {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of items to the next line */
+    justify-content: center; /* Centers items horizontally */
+    align-items: flex-start; /* Aligns items to the start of the container */
+    margin-top: 80px;
+    padding: 20px 20px;
+    position: relative; /* Allows absolute positioning of heading */
+}
+
+.container3-title {
+    width: 100%; /* Full width to center-align heading */
+    text-align: center; /* Center-align text */
+    font-size: 2.5rem; /* Font size for heading */
+    color: #333; /* Heading color */
+    margin-bottom: 20px; /* Space below the heading */
+    font-family: Arial, sans-serif; /* Font family */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(33.33% - 40px); /* Adjusts width to fit 4 cards per row with spacing */
+    width: calc(33.33% - 40px); /* 4 items per row with spacing */
+    margin-bottom: 30px; /* Spacing between rows */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title:hover {
+    color: red; 
+}
+
+.card > div {
+    box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-image {
+    width: 75%; /* Adjust to fit the width of the card */
+    height: 250px;
+    overflow: hidden; /* Ensures the image doesn't overflow */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-image img:hover {
+    transform: scale(1.1);
+}
+
+.card-text {
+    margin-top: 0px;
+    background-color: #1d1c20;
+    color: #fff;
+    padding: 20px;
+    width: 75%; /* Adjust to fit the width of the card */
+    box-sizing: border-box; /* Includes padding in the width and height */
+}
+
+.card-meal-type {
+    font-style: italic;
+}
+
+.card-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    transition: color 0.3s ease-in-out;
+}
+
+.card-body {
+    font-size: 1.1rem;
 }
