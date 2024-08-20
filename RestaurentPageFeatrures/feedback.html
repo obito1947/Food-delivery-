@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Feedback</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .feedback-container {
+            width: 80%;
+            max-width: 900px; /* Decreased max width */
+            padding: 1.5rem; /* Adjusted padding */
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        h2 {
+            text-align: center;
+            color: #e94560;
+            margin-bottom: 1rem; /* Adjusted margin */
+            font-size: 2rem; /* Decreased font size */
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        .feedback-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 1rem; /* Decreased padding */
+            margin-bottom: 1rem; /* Adjusted margin */
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
+        }
+
+        .feedback-card:hover {
+            transform: translateY(-8px); /* Slight lift on hover */
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4); /* Adjusted shadow */
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .feedback-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px; /* Decreased height */
+            background: linear-gradient(to right, #e94560, #0f3460);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feedback-card:hover::before {
+            opacity: 1;
+        }
+
+        .feedback-card h3 {
+            font-size: 1.5rem; /* Decreased font size */
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-card p {
+            font-size: 0.9rem; /* Decreased font size */
+            color: #dcdcdc;
+            line-height: 1.4; /* Adjusted line-height */
+        }
+
+        .feedback-card .dish-name {
+            font-size: 1rem; /* Decreased font size */
+            color: #e94560;
+            margin-top: 0.5rem; /* Adjusted margin */
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .feedback-card:hover .dish-name {
+            color: #0f3460;
+        }
+
+        .feedback-card .rating {
+            margin-top: 0.5rem;
+            color: #ffd700;
+        }
+
+        /* Hover effect for rating */
+        .feedback-card:hover .rating {
+            color: #ffc107;
+        }
+
+        .feedback-card .timestamp {
+            margin-top: 0.5rem; /* Adjusted margin */
+            font-size: 0.8rem; /* Decreased font size */
+            color: #a0a0a0;
+            text-align: right;
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback-card {
+            animation: slideIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h2>Customer Feedback</h2>
+        <div class="feedback-card">
+            <h3>John Doe</h3>
+            <p>"The pizza was absolutely delicious! The crust was perfectly crispy, and the toppings were fresh and flavorful."</p>
+            <div class="dish-name">Dish: Margherita Pizza</div>
+            <div class="rating">Rating: ★★★★★</div>
+            <div class="timestamp">August 19, 2024</div>
+        </div>
+        <div class="feedback-card">
+            <h3>Jane Smith</h3>
+            <p>"Loved the biryani! It was packed with spices and had the right amount of heat. Will definitely order again."</p>
+            <div class="dish-name">Dish: Chicken Biryani</div>
+            <div class="rating">Rating: ★★★★☆</div>
+            <div class="timestamp">August 18, 2024</div>
+        </div>
+        <!-- Additional feedback cards can be added here -->
+    </div>
+</body>
+</html>
