@@ -18,17 +18,14 @@
     <% 
     String successMessage = (String) session.getAttribute("successMessage");
     String errorMessage = (String) session.getAttribute("errorMessage");
-    String message = null;
-
+    String message=null;
     if (successMessage != null) {
         message = successMessage;
-        session.removeAttribute("successMessage");
     } else if (errorMessage != null) {
         message = errorMessage;
-        session.removeAttribute("errorMessage");
+      
     }
-
-    if (message != null) {
+    if (message!=null ){
 %>
         <script>
             window.onload = function() {
@@ -38,7 +35,7 @@
                     sessionStorage.removeItem('scrollPosition');
                 }
 
-                // Display the success or error popup
+                // Display the success popup
                 const successPopup = document.getElementById('successPopup');
                 if (successPopup) {
                     successPopup.style.display = 'block';
@@ -51,6 +48,8 @@
             };
         </script>
 <%
+        // Remove the session attribute after displaying the message
+        session.removeAttribute("successMessage");
     }
 %>
 
@@ -58,9 +57,6 @@
 </head>
 
 <body>
-
-<!-- fetch the result set from the session  -->
- 						
      <!-- Profile Logo -->
      <div id="profile-logo" class="profile-logo">
         <img src="https://th.bing.com/th/id/OIP.En-syxyO8aKO3SjmYAgMwQAAAA?rs=1&pid=ImgDetMain" 
@@ -380,10 +376,41 @@
                         <div class="form-group">
                             <select id="dishname" name="dishname" required>
                                 <option value="" disabled selected>Select Dish</option>
+                                <!-- Options should be dynamically populated from the database -->
                                 
+                                <%
+							     ResultSet dishData1 = (ResultSet) session.getAttribute("dishData");
+							    if (dishData1 != null) 
+							    { 
+							    	
+							        try {
+							        	
+							        	
+							        	dishData1.beforeFirst();
+							        			
+							            while (dishData1.next()) {
+							            	
+							            	
+							%>
+							                <option value="<%= dishData1.getString("dishname")%>">
+							                    <%= dishData1.getString("dishname")%>
+							                </option>
+							<%
+							            }
+							        } catch (Exception e) {
+							        	System.out.println("exception raised "+e);
+							        }
+							    } else {
+							    	System.out.println("data is not available");
+							    }
+							%>
+
+                                <option value="panner Biryani">Panner biryani</option>
+                                <option value="Dish 3">burger</option>
+                            </select>
                             <label for="dishname">Dish Name</label>
                         </div>
-                        <button type="submit">Remove Dish</button>
+                        <button type="submit" onclick="yourSubmitFunction()" >Remove Dish</button>
                         <div class="confirmation-message">
                             This action cannot be undone.
                         </div>
@@ -510,6 +537,54 @@
             </div>
           
         </div>
+     
+     
+    				  <%
+							     ResultSet dishData2 = (ResultSet) session.getAttribute("dishData");
+							    if (dishData2 != null) 
+							    { 
+							    	
+							        try {
+							        	
+							        	
+							        	dishData2.beforeFirst();
+							        			
+							            while (dishData2.next()) {
+							            	
+							            	
+							%>
+							            <div class="card">
+							            <div class="card-image">
+							                <img src="<%=dishData2.getString("imageurl")%>" alt="burger">
+							            </div>
+							            <div class="card-text">
+							                <p class="card-meal-type">
+							                   <%=dishData2.getString("restname")%>
+							                </p>
+							                <h2 class="card-title">
+							                    <%=dishData2.getString("dishname")%>
+							                </h2>
+							                <p class="card-body">
+							                    <%=dishData2.getString("description")%>
+							                    <p class="price"> Price: &#8377;<%=dishData2.getString("price")%><p>
+							                </p>
+							            </div>
+							            
+							        </div>    
+							               
+							<%
+							            }
+							        } catch (Exception e) {
+							        	System.out.println("exception raised "+e);
+							        }
+							    } else {
+							    	System.out.println("data is not available");
+							    }
+							%>
+        
+
+        
+        
 
         <div class="card">
             <div class="card-image">
@@ -517,14 +592,14 @@
             </div>
             <div class="card-text">
                 <p class="card-meal-type">
-                    United States Special
+                    Restaurent Name
                 </p>
                 <h2 class="card-title">
-                    Burger
+                    Dish name
                 </h2>
                 <p class="card-body">
-                    Indulge in our mouthwatering burgers, crafted with premium, juicy patties and fresh, flavorful toppings.
-                     Perfectly grilled and served on a soft, toasted bun, each bite promises a satisfying burst of deliciousness.
+                    Descrpition 
+                    <p class="price"> Price: &#8377;500<p>
                 </p>
             </div>
             
@@ -547,6 +622,8 @@
             </div>
            
         </div>
+       
+
        
 </div>
 
