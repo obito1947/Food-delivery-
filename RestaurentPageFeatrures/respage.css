@@ -647,12 +647,13 @@ legend {
 }
 
 /* Card styles */
+
+
 .container3 {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh; /* Changed from height to min-height */
     display: flex;
     flex-wrap: wrap; /* Allows wrapping of items to the next line */
-    justify-content: center; /* Centers items horizontally */
     align-items: flex-start; /* Aligns items to the start of the container */
     margin-top: 80px;
     padding: 20px 20px;
@@ -669,16 +670,22 @@ legend {
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 calc(33.33% - 40px); /* Adjusts width to fit 4 cards per row with spacing */
-    width: calc(33.33% - 40px); /* 4 items per row with spacing */
-    margin-bottom: 30px; /* Spacing between rows */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    margin-left: 30px;
+    flex: 1 1 calc(33.33% - 40px); /* 3 items per row, including margin */
+    max-width: calc(33.33% - 40px); /* Ensures consistent item width */
+    margin-bottom: 30px; /* Space between rows */
+    margin-left: 60px;
     border-radius: 5px;
+    box-sizing: border-box; /* Includes padding in width calculation */
+}
+.card:nth-child(3n + 1) {
+    margin-left: 0; /* Removes margin on the first item of each row */
 }
 
+.card:nth-last-child(-n+3):nth-child(3n+1),
+.card:nth-last-child(-n+3):nth-child(3n+2) {
+    flex: 1 1 calc(33.33% - 40px); /* Ensures consistent width if last row has fewer items */
+    max-width: calc(33.33% - 40px);
+}
 .card:hover {
     transform: scale(1.05);
 }
@@ -722,7 +729,7 @@ legend {
     font-style: italic;
 }
 
-.card-title {
+.card-title ,.price {
     font-size: 2.2rem;
     margin-bottom: 20px;
     margin-top: 5px;
