@@ -669,76 +669,121 @@ legend {
     font-family: Arial, sans-serif; /* Font family */
 }
 
-.card {
-    flex: 1 1 calc(33.33% - 40px); /* 3 items per row, including margin */
-    max-width: calc(33.33% - 40px); /* Ensures consistent item width */
-    margin-bottom: 30px; /* Space between rows */
-    margin-left: 60px;
-    border-radius: 5px;
-    box-sizing: border-box; /* Includes padding in width calculation */
-}
-.card:nth-child(3n + 1) {
-    margin-left: 0; /* Removes margin on the first item of each row */
-}
+ .card {
+            flex: 1 1 calc(33.33% - 40px); /* 3 items per row, including margin */
+            max-width: calc(33.33% - 40px); /* Ensures consistent item width */
+            margin-bottom: 30px; /* Space between rows */
+            margin-left: 60px;
+            border-radius: 5px;
+            box-sizing: border-box; /* Includes padding in width calculation */
+            transition: transform 0.3s ease-in-out;
+        }
 
-.card:nth-last-child(-n+3):nth-child(3n+1),
-.card:nth-last-child(-n+3):nth-child(3n+2) {
-    flex: 1 1 calc(33.33% - 40px); /* Ensures consistent width if last row has fewer items */
-    max-width: calc(33.33% - 40px);
-}
-.card:hover {
-    transform: scale(1.05);
-}
+        .card:nth-child(3n + 1) {
+            margin-left: 0; /* Removes margin on the first item of each row */
+        }
 
-.card-title:hover {
-    color: red; 
-}
+        .card:nth-last-child(-n+3):nth-child(3n+1),
+        .card:nth-last-child(-n+3):nth-child(3n+2) {
+            flex: 1 1 calc(33.33% - 40px); /* Ensures consistent width if last row has fewer items */
+            max-width: calc(33.33% - 40px);
+        }
 
-.card > div {
-    box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.5);
-}
+        .card:hover {
+            transform: scale(1.05);
+        }
 
-.card-image {
-    width: 75%; /* Adjust to fit the width of the card */
-    height: 250px;
-    overflow: hidden; /* Ensures the image doesn't overflow */
-}
+        .card > div {
+            box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.5);
+        }
 
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease-in-out;
-}
+        .card-image {
+            width: 75%;
+            height: 250px;
+            overflow: hidden;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
 
-.card-image img:hover {
-    transform: scale(1.1);
-}
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease-in-out;
+        }
 
-.card-text {
-    margin-top: 0px;
-    background-color: #1d1c20;
-    color: #fff;
-    padding: 20px;
-    width: 75%; /* Adjust to fit the width of the card */
-    box-sizing: border-box; /* Includes padding in the width and height */
-}
+        .card-image img:hover {
+            transform: scale(1.1);
+        }
 
-.card-meal-type {
-    font-style: italic;
-}
+        .card-text {
+            margin-top: 0;
+            background-color: #1d1c20;
+            color: #fff;
+            padding: 10px 15px;
+            width: 75%;
+            box-sizing: border-box;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
 
-.card-title ,.price {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    margin-top: 5px;
-    transition: color 0.3s ease-in-out;
-}
+        .card-meal-type {
+            font-style: italic;
+            color: #ff6347;
+            margin-bottom: 10px;
+        }
 
-.card-body {
-    font-size: 1.1rem;
-}
+        .card-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allows title and box to wrap if necessary */
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin: 5px 0;
+            transition: color 0.3s ease-in-out;
+            flex: 1; /* Allow title to take available space */
+        }
+
+        .vegornot-box {
+            padding: 5px 10px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 5px;
+            margin-left: 10px; /* Space between title and box */
+            margin-top: 5px; /* Ensure space if it wraps onto a new line */
+            flex-shrink: 0;
+        }
+
+        .veg {
+            background-color: green;
+        }
+
+        .non-veg {
+            background-color: orangered;
+        }
+
+        .card-body {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: #ff4500;
+            font-weight: bold;
+        }
 
 /* Add Dish */
 
@@ -1376,4 +1421,95 @@ legend {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1001;
     font-size: 18px;
+}
+
+/* Popup Styles for change password */
+/* Popup Styles for change password */
+.pop1 {
+    display: none;
+    position: fixed;
+    z-index: 1300;
+    left: 30%;
+    top: 10%;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup1-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.close-popup1 {
+    color: #aaa;
+    align-self: flex-end;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-popup1:hover,
+.close-popup1:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#changePasswordForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.security-section,
+.password-section {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+#changePasswordForm label {
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#changePasswordForm input,
+#changePasswordForm textarea,
+#changePasswordForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#changePasswordForm button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#changePasswordForm button:hover {
+    background-color: #555;
 }
