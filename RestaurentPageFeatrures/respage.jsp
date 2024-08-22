@@ -1,4 +1,5 @@
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -57,89 +58,112 @@
 </head>
 
 <body>
+   <%
+List<String> restaurantData = (List<String>) session.getAttribute("restaurantData");
+       %>
+
      <!-- Profile Logo -->
      <div id="profile-logo" class="profile-logo">
-        <img src="https://th.bing.com/th/id/OIP.En-syxyO8aKO3SjmYAgMwQAAAA?rs=1&pid=ImgDetMain" 
+        <img src="<%= restaurantData.get(4) %>" 
            alt="Profile Logo">
     </div>
-
+     
     <div id="sidebar" class="sidebar">
-        <div class="sidebar-content">
-            <div class="profile-photo-wrapper">
-                <img src="https://th.bing.com/th/id/OIP.En-syxyO8aKO3SjmYAgMwQAAAA?rs=1&pid=ImgDetMain"
-                     alt="Profile Photo" class="sidebar-profile-photo" id="sidebarProfilePhoto">
-               
-            </div>
-            <p class="sidebar-profile-name">Gyomei Himejima</p>
-            <p>&bull;&ensp;working hours:10.00-10.00</p>
-            <p>&bull;&ensp;Number items available : 30</p>
-            <p>&bull;&ensp;Number items in the menu : 70</p>
-            <p>&bull;&ensp;Number of Orders Delivered : 150</p>
-            <p>&bull;&ensp;Number of orders Yet to be delivered: 50</p>
-            <p>&bull;&ensp;Rating of my Resturant:4.5</p>
-            <p class="edit-profile"><a href="#" id="editProfileBtn"><i class="fa-solid fa-user-edit"></i> &emsp;Edit Profile</a></p>
-            <hr>
-            <p class="logout"><a href="#"><i class="fa-solid fa-sign-out-alt"></i> &emsp;Logout</a></p> 
+    <div class="sidebar-content">
+        <div class="profile-photo-wrapper">
+            <img src="<%= restaurantData.get(4) %>"
+                 alt="Profile Photo" class="sidebar-profile-photo" id="sidebarProfilePhoto">
         </div>
+<% 
+       
+
+if (restaurantData != null && !restaurantData.isEmpty()) {
+%>
+    <p class="sidebar-profile-name"><%= restaurantData.get(0) %></p>
+    <p>&bull;&ensp;UserName: <%=  restaurantData.get(1) %></p>
+    <p>&bull;&ensp;Email: <%=  restaurantData.get(2) %></p>
+    <p>&bull;&ensp;MobileNo:<%= restaurantData.get(3) %>:</p>
+    <% System.out.println("completed of side bar"); %>
+<%
+} else {
+    out.println("<p>No data available for the restaurant.</p>");
+}
+%>
+
+      <div class="actions-container">
+                <p class="trigger-change-password">
+                    <a href="#" id="triggerPasswordPopup"><i class="fa-solid fa-key"></i>&emsp;Change Password</a>
+                </p>
+                <p class="edit-profile">
+                    <a href="#" id="editProfileBtn"><i class="fa-solid fa-user-edit"></i>&emsp;Edit info</a>
+                </p>
+            </div>
+            <hr>
+            <p class="logout"><a href="/FoodSphere/Logout"><i class="fa-solid fa-sign-out-alt"></i>&emsp;Logout</a></p>
     </div>
+</div>
+<!----pop-up for change password-->
+<!----pop-up for change password-->
+<div id="passwordPopup" class="pop1">
+    <div class="popup1-content">
+        <span class="close-popup1">&times;</span>
+        <h2>Change Password</h2>
+        <form id="changePasswordForm" action="/FoodSphere/updatePassword" method="get">
+            <fieldset class="security-section">
+                <legend>Security Check</legend>
+                <label for="currentPassword">Current Password:</label>
+                <input type="password" id="currentPassword" name="currentPassword" >
+               
+              <center>  <legend>New Password</legend></center>
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword">
+
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </fieldset>
+
+         
+            <center><button type="submit">Save</button></center>
+        </form>
+    </div>
+</div>
     
    <!-- Popup Window -->
 <div id="editProfilePopup" class="popup">
     <div class="popup-content">
         <span class="close-btn" id="closePopup">&times;</span>
         <h2>Edit Profile</h2>
-        <form id="editProfileForm">
+        <form id="editProfileForm" action="/FoodSphere/RestaurantProfile" method="post" enctype="multipart/form-data">
             <div class="profile-photo-section">
                 <div class="profile-photo-wrapper">
-                    <img src="https://th.bing.com/th/id/OIP.En-syxyO8aKO3SjmYAgMwQAAAA?rs=1&pid=ImgDetMain"
+                    <img src="<%= restaurantData.get(4) %>"
                          alt="Profile Photo" class="profile-photo" id="popupProfilePhoto">
                     <span class="edit-icon"><i class="fa-solid fa-pencil-alt"></i></span>
                 </div>
-                <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+                <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;" name="photo">
             </div>
 
             <fieldset>
                 <legend>Edit Profile Information</legend>
-                <label for="fullName">Full Name:</label>
-                <input type="text" id="fullName" name="fullName" value="Gyomei Himejima"><br>
-
+                
+                <input type="hidden" name="Rname" value="<%= restaurantData.get(0)%>" ><br>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="GyomeiH"><br>
+                <input type="text" id="username" name="username" value="<%= restaurantData.get(1)%>"><br>
 
                 <label for="email">Email ID:</label>
-                <input type="email" id="email" name="email" value="gyomei@example.com"><br>
-
-                <label for="description">Description:</label>
-                <textarea id="description" name="description">Your description here...</textarea><br>
+                <input type="email" id="email" name="email" value="<%= restaurantData.get(2)%>"><br>
+				
+				<label for="description">Description:</label>
+                <textarea id="description" name="description"><%= restaurantData.get(5) != null ? restaurantData.get(5) : "" %></textarea><br>
+                <input type="number" name="number" value="<%= restaurantData.get(3) != null ? restaurantData.get(3).toString() : "" %>">
                 
-                <label for="CurrentPassword">Current Password:</label>
-                <input type="password" id="CurrentPassword" name="CurrentPassword"><br>
-
-                <label for="securityQuestion">Security Question:</label>
-                <select id="securityQuestion" name="securityQuestion">
-                    <option value="favoriteColor">What is your favorite color?</option>
-                    <option value="petName">What is your pet's name?</option>
-                    <option value="birthPlace">Where were you born?</option>
-                </select><br>
-
-                <label for="securityAnswer">Answer:</label>
-                <input type="text" id="securityAnswer" name="securityAnswer"><br>
-
-                <div id="passwordFields" style="display: none;">
-                    <label for="newPassword">New Password:</label>
-                    <input type="password" id="newPassword" name="newPassword"><br>
-
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" "required"><br> 
-                </div>
-                <button type="button" id="changePasswordBtn">Change Password</button><br>
-
+              
+                
                <center><button type="submit">Save</button></center> 
             </fieldset>
         </form>
     </div>
 </div>
-
     
 
     <div id="main-content" class="main-content">
@@ -159,7 +183,7 @@
         </ul>
     </nav>
     <div  class="resturant-section">
-        <h2>DemonSlayer Corp.</h2>
+        <h2><%= session.getAttribute("restName") %></h2>
     </div>
     <div class="slider-container">
         <div class="slider-wrapper">
@@ -405,8 +429,7 @@
 							    }
 							%>
 
-                                <option value="panner Biryani">Panner biryani</option>
-                                <option value="Dish 3">burger</option>
+                              
                             </select>
                             <label for="dishname">Dish Name</label>
                         </div>
@@ -519,24 +542,7 @@
     </div>
     <div id="extra-content" class="container3" style="display: none;">
         <h1 class="container3-title">Menu</h1>
-        <div class="card">
-            <div class="card-image">
-                <img src="https://www.indianpolitics.co.in/wp-content/uploads/2021/02/dosa_c.jpg" alt="dosa">
-            </div>
-            <div class="card-text">
-                <p class="card-meal-type">
-                    south indian special
-                </p>
-                <h2 class="card-title">
-                    Dosa
-                </h2>
-                <p class="card-body">
-                    Experience the crisp, golden perfection of our dosas, served with an array of flavorful chutneys and sambar.
-                     Each dosa is expertly crafted to deliver a deliciously satisfying taste of traditional South Indian cuisine
-                </p>
-            </div>
-          
-        </div>
+       
      
      
     				  <%
@@ -553,24 +559,27 @@
 							            	
 							            	
 							%>
-							            <div class="card">
-							            <div class="card-image">
-							                <img src="<%=dishData2.getString("imageurl")%>" alt="burger">
+							              
+							    <div class="card">
+							        <div class="card-image">
+							            <img src="<%=dishData2.getString("imageurl")%>" alt="noodles">
+							        </div>
+							        <div class="card-text">
+							            <p class="card-meal-type">
+							               <%=dishData2.getString("restname")%>
+							            </p>
+							            <div class="card-title-row">
+							                <h2 class="card-title"><%=dishData2.getString("dishname")%></h2>
+							                <% if(((String)dishData2.getString("veg_or_nonveg")).equals("Non-Veg")){ %>
+							                <span class="vegornot-box non-veg">Non-Veg</span>
+							                <%} else { %>
+							                <span class="vegornot-box veg">Veg</span>
+							                <%} %>
 							            </div>
-							            <div class="card-text">
-							                <p class="card-meal-type">
-							                   <%=dishData2.getString("restname")%>
-							                </p>
-							                <h2 class="card-title">
-							                    <%=dishData2.getString("dishname")%>
-							                </h2>
-							                <p class="card-body">
-							                    <%=dishData2.getString("description")%>
-							                    <p class="price"> Price: &#8377;<%=dishData2.getString("price")%><p>
-							                </p>
-							            </div>
-							            
-							        </div>    
+							            <p class="card-body description"><%=dishData2.getString("description")%></p>
+							            <p class="price">₹<%=dishData2.getString("price")%></p>
+							        </div>
+							    </div>  
 							               
 							<%
 							            }
@@ -581,64 +590,14 @@
 							    	System.out.println("data is not available");
 							    }
 							%>
-        
-
-        
-        
-
-        <div class="card">
-            <div class="card-image">
-                <img src="https://images2.alphacoders.com/108/1085778.jpg" alt="burger">
-            </div>
-            <div class="card-text">
-                <p class="card-meal-type">
-                    Restaurent Name
-                </p>
-                <h2 class="card-title">
-                    Dish name
-                </h2>
-                <p class="card-body">
-                    Descrpition 
-                    <p class="price"> Price: &#8377;500<p>
-                </p>
-            </div>
-            
-        </div>
-
-        <div class="card">
-            <div class="card-image">
-                <img src="https://th.bing.com/th/id/OIP.S4xZSae4ZW5rwZze55KzzQHaHa?rs=1&pid=ImgDetMain" alt="noodles">
-            </div>
-            <div class="card-text">
-                <p class="card-meal-type">
-                    Chinese Special
-                </p>
-                <h2 class="card-title">
-                    Noodles
-                </h2>
-                <p class="card-body">
-                    Savor our delectable noodles, perfectly cooked and tossed in savory sauces with a medley of fresh, crisp vegetables.
-                     Each bowl offers a delightful combination of flavors and textures that will keep you coming back for more
-            </div>
-           
-        </div>
        
-
-       
-</div>
+  </div>
 
     <section class="about-section" id="about-section">
         <div class="container">
-            <h1>About DemonSlayer Corp.</h1>
-            <p>Welcome to <strong>DemonSlayer Corp.</strong>, your ultimate online food delivery platform designed to bring
-                 the best dining experiences right to your doorstep. Whether you're craving a gourmet meal from your 
-                 favorite restaurant, a quick snack, or something healthy, Food Sphere has got you covered.</p>
-            <p>Our mission is to connect food lovers with a wide array of culinary delights from local eateries, 
-                popular chains, and unique hidden gems. We pride ourselves on offering a seamless, user-friendly 
-                platform where you can explore diverse menus, customize your orders, and enjoy fast, reliable 
-                delivery—all with just a few clicks.</p>
-            <p>At Food Sphere, we believe that great food should be accessible to everyone, anytime, anywhere. We re 
-                dedicated to providing top-notch customer service, ensuring that your meals are prepared fresh, delivered
+            <h1>About <%= restaurantData.get(0) %></h1>
+            <p>Welcome to <strong><%= restaurantData.get(0) %></strong>
+            <%= restaurantData.get(5) %>
                  promptly, and meet your expectations every time.</p>
         </div>
     </section>
@@ -835,23 +794,48 @@ document.querySelector('[data-modal="item4Modal"]').addEventListener('click', fu
     });
 </script>
 <!---- Script for password-->
+<!---- Script for password-->
 <script>
-    // Get elements
-const changePasswordBtn = document.getElementById("changePasswordBtn");
-const passwordFields = document.getElementById("passwordFields");
+		    // Get elements
+		    const triggerPasswordPopup = document.getElementById("triggerPasswordPopup");
+		const passwordPopup = document.getElementById("passwordPopup");
+		const closePopup1Btn = document.querySelector(".close-popup1");
+		const revealPasswordFieldsBtn = document.getElementById("revealPasswordFieldsBtn");
+		const newPasswordSection = document.getElementById("newPasswordSection");
+		
+		// Show the popup when the link is clicked
+		triggerPasswordPopup.addEventListener("click", (event) => {
+		    event.preventDefault(); // Prevent the default anchor behavior
+		    passwordPopup.style.display = "block";
+		});
+		
+		// Close the popup when the 'x' is clicked
+		closePopup1Btn.addEventListener("click", () => {
+		    passwordPopup.style.display = "none";
+		});
+		
+		// Close the popup when clicking outside the content area
+		window.addEventListener("click", (event) => {
+		    if (event.target === passwordPopup) {
+		        passwordPopup.style.display = "none";
+		    }
+		});
+		
+		// Show password fields if the security question/answer or current password is filled
+		revealPasswordFieldsBtn.addEventListener("click", () => {
+		    const currentPassword = document.getElementById("currentPassword").value;
+		    const securityQuestion = document.getElementById("securityQuestion").value;
+		    const securityAnswer = document.getElementById("securityAnswer").value;
+		    
+		    // Check if either the current password is filled or both security question and answer are filled
+		    if (currentPassword.trim() !== "" || (securityQuestion.trim() !== "" && securityAnswer.trim() !== "")) {
+		        newPasswordSection.style.display = "block";
+		        revealPasswordFieldsBtn.style.display = "none";
+		    } else {
+		        alert("Please enter your current password or provide a security question and answer before changing the password.");
+		    }
+		});
 
-// Show password fields after answering security question
-changePasswordBtn.addEventListener("click", () => {
-    const securityAnswer = document.getElementById("securityAnswer").value;
-    
-    // Simple validation to check if the security answer is filled
-    if (securityAnswer.trim() !== "") {
-        passwordFields.style.display = "block";
-        changePasswordBtn.style.display = "none";
-    } else {
-        alert("Please answer the security question before changing the password.");
-    }
-});
 
 </script>
 <!---Add Dish-->
